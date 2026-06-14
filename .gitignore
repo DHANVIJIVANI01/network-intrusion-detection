@@ -1,0 +1,5 @@
+# Ignore all python pickle files (hides model, scaler, and features)
+*.pkl
+
+# Ignore heavy dataset files
+*.csv
