@@ -138,7 +138,7 @@ html_layout = """
 <body>
     <div class="card">
         <h2>🛡️ Network Intrusion Diagnostics</h2>
-        <div class="sub">Network Anomaly Detection Engine</div>
+        <div class="sub">AI-Powered Anomaly Detection Engine</div>
         
         <form method="POST" action="/">
             {% for feature in features %}
