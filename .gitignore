@@ -8,5 +8,4 @@ __pycache__/
 !features.pkl
 
 # Ignore heavy dataset files
-*.csv
 ve/
