@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: nids-stream-analytics
+    env: python
+    buildCommand: pip install -r requirements-render.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT

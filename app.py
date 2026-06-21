@@ -1,8 +1,18 @@
 from flask import Flask, request, render_template_string, url_for
+import os
 import pickle
 import numpy as np
 
 app = Flask(__name__)
+
+# Ensure the required model artifacts are available during deployment
+required_artifacts = ['model.pkl', 'scaler.pkl', 'features.pkl']
+missing_artifacts = [path for path in required_artifacts if not os.path.exists(path)]
+if missing_artifacts:
+    raise FileNotFoundError(
+        'Missing required deployment artifacts: ' + ', '.join(missing_artifacts) +
+        '.\nEnsure model.pkl, scaler.pkl, and features.pkl are present in the repository or uploaded to the deployment environment.'
+    )
 
 # Load the optimized 7-feature model
 with open('model.pkl', 'rb') as f:
