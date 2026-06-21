@@ -23,15 +23,6 @@ The solution is a supervised learning approach that transforms the raw `dataset/
 
 The following architecture describes the end-to-end flow from raw dataset ingestion to live inference in the Flask web interface.
 
-```mermaid
-flowchart LR
-    A[Raw CSV Dataset] --> B[Data Ingestion & Cleaning]
-    B --> C[Feature Engineering]
-    C --> D[Model Training & Validation]
-    D --> E[Model Persistence (`model.pkl`, `scaler.pkl`, `features.pkl`)]
-    E --> F[Flask Inference Service]
-    F --> G[User Interface / Prediction Output]
-```
 
 1. **Raw CSV Dataset**: Start with network flow data from `dataset/DrDoS_DNS.csv`.
 2. **Data Ingestion & Cleaning**: Load data, handle missing values, normalize features, and prepare data for modeling.
