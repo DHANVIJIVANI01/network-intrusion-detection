@@ -1,4 +1,3 @@
-
 # DrDoS DNS Detection — Project Overview
 
 ## Introduction (Description & Overview)
@@ -23,7 +22,6 @@ The solution is a supervised learning approach that transforms the raw `dataset/
 
 The following architecture describes the end-to-end flow from raw dataset ingestion to live inference in the Flask web interface.
 
-
 1. **Raw CSV Dataset**: Start with network flow data from `dataset/DrDoS_DNS.csv`.
 2. **Data Ingestion & Cleaning**: Load data, handle missing values, normalize features, and prepare data for modeling.
 3. **Feature Engineering**: Compute relevant flow statistics and select the final feature set used by the classifier.
@@ -42,7 +40,6 @@ The following architecture describes the end-to-end flow from raw dataset ingest
 - Lightweight REST API and demo UI via Flask for single-sample or batch predictions.
 
 ## Scope
-
 Included:
 
 - Offline dataset-driven training and evaluation using `dataset/DrDoS_DNS.csv`.
@@ -65,12 +62,40 @@ Excluded (out of scope):
 - **Flask**: Lightweight web framework to serve inference endpoints and demo UI (`app.py`).
 - **Virtual Environment**: `ve/` contains the project's isolated Python environment; activate before running scripts.
 
-## Next Steps (optional)
+## Suggested Use Cases for Testing the Model
+Use these cases to understand the project and verify the inference flow in app.py.
+1. DrDoS Attack Example
+Input values from a known attack row:
+flow_duration: 133
+total_forward_packets: 4
+total_backward_packets: 0
+forward_iat_mean: 44.33333333333333
+backward_iat_mean: 0.0
+flow_packets_per_seconds: 30075.18796992481
+flow_bytes_per_seconds: 44270676.69172932
+Expected output:
+🚨 THREAT DETECTED: DrDoS Attack Signature
 
-- Add a `requirements.txt` exported from the `ve/` environment for reproducibility.
-- Add examples of API requests and a short `usage` section in this README.
-- Add unit tests for preprocessing and inference functions.
+2. Benign Traffic Example
+Input values from a benign row:
+flow_duration: 20599
+total_forward_packets: 2
+total_backward_packets: 2
+forward_iat_mean: 1.0
+backward_iat_mean: 2.0
+flow_packets_per_seconds: 194.18418369823777
+flow_bytes_per_seconds: 14078.353318122241
+Expected output:
+✅ SYSTEM SECURE: Normal Traffic Flow
 
----
-
-If you want, I can also add a concise executive summary for stakeholders and create a `requirements.txt` based on the environment in `ve/Lib/site-packages`.
+3. Another DrDoS Attack Example
+Input values from a second attack row:
+flow_duration: 11
+total_forward_packets: 2
+total_backward_packets: 0
+forward_iat_mean: 11.0
+backward_iat_mean: 0.0
+flow_packets_per_seconds: 181818.18181818182
+flow_bytes_per_seconds: 252000000.0
+Expected output:
+🚨 THREAT DETECTED: DrDoS Attack Signature
